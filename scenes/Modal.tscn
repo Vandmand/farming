@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://fj145roqo4qi"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "Button 1"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 2
+text = "Button 1"

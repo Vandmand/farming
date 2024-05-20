@@ -3,7 +3,7 @@ extends Camera3D
 @export var CAMERA_SPEED = 10
 @export var CAMERA_ROTATION_SPEED = 2
 
-var prev_mouse_collider: Dictionary;
+var prev_mouse_collider: Dictionary = {};
 
 func movement(delta) -> void:
 	var projected_basis = Basis(transform.basis)
@@ -37,20 +37,23 @@ func get_mouse_collision() -> Dictionary:
 func mouse():
 	var mouse_collider := get_mouse_collision()
 
-	if !(mouse_collider.get("collider") is Interactable3D):
+	if mouse_collider.get('collider_id') == prev_mouse_collider.get('collider_id'):
 		return
 
-	if mouse_collider == prev_mouse_collider:
-		return
+	# Handle enter collision
+	if mouse_collider.get("collider") is Interactable3D:
+		mouse_collider.get("collider").mouse_enter()
 
-	# If the collider is interactable, and it's not the same as the previous collider
-	var collider: Interactable3D = mouse_collider.get("collider")
-	collider.mouse_enter()
-
-	if (prev_mouse_collider.get('collider') is Interactable3D&&prev_mouse_collider.collider_id != mouse_collider.collider_id):
+	# Handle exit collison
+	if prev_mouse_collider.get("collider") is Interactable3D:
 		prev_mouse_collider.get("collider").mouse_exit()
-
+	
 	prev_mouse_collider = mouse_collider
+
+func _input(event):
+	if (event is InputEventMouseButton) and event.pressed:
+		if prev_mouse_collider.get("collider") is Interactable3D:
+			prev_mouse_collider.get("collider").emit_signal("clicked", event)
 
 func _process(delta):
 	movement(delta)

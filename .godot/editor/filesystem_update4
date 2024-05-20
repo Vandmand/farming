@@ -1,6 +1,3 @@
-res://objects/main_camera.gd
-res://objects/testcube.tscn
+res://scenes/UI.gd
+res://globals.gd
 res://objects/testcube.gd
-res://scenes/test.tscn
-res://objects/main_camera.tscn
-res://global/classes/Interactable3D.gd
