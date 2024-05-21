@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0qdsvyjnxcsx"]
+
+[ext_resource type="Script" path="res://assets/ui/UI.gd" id="1_83x6x"]
+[ext_resource type="PackedScene" uid="uid://saa1yvn7q243" path="res://assets/ui/test/test.tscn" id="2_51taw"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_83x6x")
+
+[node name="Test" parent="." instance=ExtResource("2_51taw")]
+anchors_preset = 4
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_left = 0.0
+offset_top = -35.5
+offset_right = 179.0
+offset_bottom = 35.5
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MarginContainer2/PanelContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Money"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer2/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Money" type="Label" parent="MarginContainer2/PanelContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2

@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2px28fgaj0of"]
+
+[ext_resource type="Script" path="res://assets/ui/window/window.gd" id="1_tyqxq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3q8o"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xc40p"]
+bg_color = Color(0, 0, 0, 0.0392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxuuc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w3sby"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7e6n"]
+bg_color = Color(0, 0, 0, 0.0392157)
+
+[node name="Window" type="PanelContainer"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_tyqxq")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="DragStrip" type="Button" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_k3q8o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xc40p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cxuuc")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_w3sby")
+theme_override_styles/focus = SubResource("StyleBoxFlat_p7e6n")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Close" type="Button" parent="MarginContainer/HBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Close"
+
+[node name="ContentContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[connection signal="button_down" from="MarginContainer/HBoxContainer/HBoxContainer/DragStrip" to="." method="_on_drag_strip_button_down"]
+[connection signal="button_up" from="MarginContainer/HBoxContainer/HBoxContainer/DragStrip" to="." method="_on_drag_strip_button_up"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/Close" to="." method="_on_close_pressed"]

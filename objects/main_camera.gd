@@ -50,10 +50,9 @@ func mouse():
 	
 	prev_mouse_collider = mouse_collider
 
-func _input(event):
-	if (event is InputEventMouseButton) and event.pressed:
-		if prev_mouse_collider.get("collider") is Interactable3D:
-			prev_mouse_collider.get("collider").emit_signal("clicked", event)
+func _unhandled_input(event: InputEvent):
+	if event is InputEventMouseButton and prev_mouse_collider.get("collider") is Interactable3D and event.pressed:
+		prev_mouse_collider.get("collider").emit_signal("clicked", event)
 
 func _process(delta):
 	movement(delta)
